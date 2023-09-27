@@ -1,0 +1,103 @@
+char ** dymaciacllyAlocateCharArr (int lines,int columns)
+void print2dArray(char ** arr,int rows,int columns)
+void free2dArray(char ** arr,int rows)
+////////////////////////////////////////////////
+data array :
+/////////////////////////////////////////////////////////
+char ** loadCacheDataArrayFromFile()
+void writeToDataArraryFile(char ** cacheDataArray)
+unsigned char* getByteArrayOfACacheDataLine(int set , const char **cacheDataArray )
+void writeByteArrayToACacheDataLine(int setToUpdate ,unsigned char* byteArray ,const char **cacheDataArray )
+unsigned char getSpecficByteFromDataArray(int set,int offsetInBlock, char **cacheDataArray)
+void writeByteToDataArray(unsigned char byteTowrite,int set,int offsetInBlock,char **cacheDataArray)
+void testerForDataArray()
+
+
+////////////////////////
+Tag arr
+//////////////////////////
+char * getTagAtSet (int set,char ** cacheTagArr)
+void changeTagAtSet(int set,char * newTagString,char ** cacheTagArr)
+char ** loadCacheTagFromFile(){
+void writeToTagArrayFile(char **cacheTagArray)
+void testerForTagFile()
+
+
+******************************************************************************
+cpu functions:
+**************************************
+Adrress decoding/spliting functions :
+
+//helper method :
+int convertStrintTagToNumber (char * tagString){
+    return strtol(tagString,NULL,0);
+}
+//dynamic!
+char * convertTagNumberToTagstring(int tag){
+    format 0xYYYYY
+}
+
+//writing both arrays to the cache - should be called every time we "leave" the cpu or let another process to run (waiting)
+void UpdateCacheTextFiles(char** cacheTagArray,char ** cacheDataArray)
+
+void freeBothArrays(char** cacheTagArray,char ** cacheDataArray)
+
+int getAddress_Set (int address)
+int getAddress_Offset (int address)
+int getAddress_Tag (int address)
+
+//
+//this function returns 1 if the tag matches the tag at the relevant set=>hit . 0 otherwise -=>miss
+//problen cacheTagArr a string - and address tag is an integer.
+int checkIfAddressIsIncache(int Address,char** cacheTagArray){
+    cacheTagArray[set]=0x00000
+    **use strtol(cacheTagArray[set],NULL,0)
+}
+//writes zeroes to the tag and the array.
+void flush(int setToFlush,char** cacheTagArray,char** cacheDataArray){
+    //use changeTagAtSet () , and writeByteArrayToACacheDataLine - defineunsigned char *=  {0,0..16 times}
+}
+
+// newDataByteArray - we assume it is aligned! - the start address 
+EvictSet (int set,char *tag ,unsigned char* newDataByteArray,char** cacheTagArray,char** cacheDataArray){
+
+}
+//address should be of : unsigned char * arr;
+
+//&arr[someIndex] //maybe char**c ?
+unsinged char readbyteAtAddress (int address,unsigned char*globalMem,char** cacheTagArray,char** cacheDataArray ) {
+    //access the tag - if its not there - evict -change tag and bring data from global mem (assumptions about address - it can be read and has unsgned char etc)
+    //+ add latenct with sleep /wait.
+    //Hit - return the value at the cache at the offset .
+}
+
+unsinged char writeByteAtAddress (int address,unsigned char*globalMem,char** cacheTagArray,char** cacheDataArray )
+
+waitForCacheMissDelay (int microSecondsTowait){
+    use usleep(microSecondsTowait)
+}
+
+///////////////////////////////////////
+programmer level:
+Mem_Read (int address)
+Mem_write (int TargetAddress,unsigned char* byteArrayToWrite);
+Mem_write(int TargetAddress,unsigned char byteArrayToWrite);
+
+
+signalOtherProgramToRun(int pid , signal that we choose) //leaving the cpu 
+waitForSignalFromOtherProgram(signal);
+
+
+
+
+///victim :
+Encrypt (unsinged char * sbox ,char *plain ,char Key){
+    for i in plain
+    cipher = sbox(plain[i]xor k);
+}
+
+
+
+
+
+
